@@ -1,56 +1,55 @@
-Flask Notes Manager
+📝 Flask Notes Manager
 
-A web-based notes management application built with Flask, allowing users to register, login, add, edit, delete, search, and export notes. Users can also upload files and securely manage their accounts.
+A web-based notes management application I built with Flask, enabling users to securely create, manage, search, and export notes. Users can also upload files and manage their accounts seamlessly.
 
-Features
 
-User registration with email verification (OTP)
 
-Secure login with hashed passwords
 
-Add, edit, delete, and view notes
 
-Search notes by title or content
 
-Export notes as TXT files
 
-Upload and view files
 
-Session-based authentication to protect endpoints
+🚀 Features I Implemented
 
-Fully responsive HTML templates
+✅ User registration with email OTP verification
 
-Tech Stack
+✅ Secure login with hashed passwords
+
+✅ Add, edit, delete, and view notes
+
+✅ Search notes by title or content
+
+✅ Export notes as TXT files
+
+✅ Upload and view files
+
+✅ Session-based authentication to protect data
+
+✅ Fully responsive HTML templates
+
+🛠 Tech Stack
 
 Backend: Python, Flask
 
-Database: MySQL (can be PlanetScale or local)
+Database: MySQL (PlanetScale or local)
 
 Frontend: HTML, CSS, Jinja2 templates
 
 Email: Yagmail (SMTP) for OTP verification
 
-Installation
+⚡ Installation & Setup
 
-Clone the repository:
+I designed the app to run locally using Python. Here’s how I set it up:
 
 git clone https://github.com/<your-username>/<repo>.git
 cd <repo>
-
-
-Create a virtual environment:
-
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate     # Windows
-
-
-Install dependencies:
-
 pip install -r requirements.txt
 
 
-Create a .env file (example .env.example provided) with the following variables:
+Create a .env file with your credentials (I used an example .env.example):
 
 SECRET_KEY=your_flask_secret_key
 EMAIL_USER=your_email
@@ -61,51 +60,49 @@ DB_PASS=your_db_password
 DB_NAME=your_db_name
 
 
-Run the app locally:
+Run the app:
 
 python app.py
 
 
-Open http://127.0.0.1:5030 in your browser.
+Open http://127.0.0.1:5030
+ in your browser.
 
-Database Setup
+🗄 Database Design
 
-The app will automatically create tables (USERS, NOTES, FILES) if they don’t exist.
+I structured the database with three tables:
 
-Make sure your database is running and credentials in .env are correct.
+Table	Purpose
+USERS	Stores user credentials securely
+NOTES	Stores notes with timestamps
+FILES	Manages uploaded files and metadata
 
-Usage
+I used PyMySQL for database interactions and foreign keys for relational integrity.
 
-Register a new user → Verify email via OTP
+🎨 How I Built It
 
-Login with username and password
+Managed user sessions with Flask sessions
 
-Use dashboard to:
+Used Werkzeug to hash passwords
 
-Add notes
+Handled file uploads & downloads with Flask’s send_file
 
-View, edit, or delete notes
+Implemented search functionality across notes
 
-Upload and view files
+Built a responsive UI with HTML & CSS
 
-Export notes as TXT files
+Added email OTP verification using Yagmail for registration & password reset
 
-Search notes
+☁ Deployment
 
-Project Structure
+I made the app deploy-ready on Render.com, using environment variables for secure credentials and connecting to cloud MySQL databases like PlanetScale.
+
+🗂 Project Structure
 .
-├── app.py                  # Main Flask application
-├── database.py             # Database connection & queries
+├── app.py                  # Main Flask app
+├── database.py             # DB connection & queries
 ├── config.py               # Secrets & email credentials
 ├── requirements.txt        # Python dependencies
 ├── uploads/                # Uploaded files
 ├── templates/              # HTML templates
 └── static/                 # CSS, JS, images
-
-Security
-
-Passwords are hashed using Werkzeug.
-
-All sensitive data is stored in environment variables.
-
-Session-based authentication protects endpoints.
