@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Update Note{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='updateNote.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="update-note-container">
+        <!-- <h2>Update Note</h2> -->
+        {% if message_type=="success" %}
+        <h2>Updated Notes</h2>
+            <div class="{{ message_type }}">{{ message }}</div>
+            <br>
+            <a href="/user/view_notes"><button type="submit">View Notes</button></a>
+        {% else %}
+        <h2>Update Note</h2>
+        <form method="POST" action="{{ url_for('update_note', nid=note.get('ID')) }}">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" value="{{ note.get('NOTES_TITLE') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id="content" name="content" required>{{ note.get('CONTENT') }}</textarea>
+            </div>
+            <button type="submit">Update Note</button>
+        </form>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="register-container">
+        <h2>Email verification</h2>
+        {% if message_type=="success"%}
+            <div class="{{message_type}}">{{ message }}</div>
+        {% elif message_type=="error"%}
+            <div class="{{message_type}}">{{ message }}</div>
+            <form method="POST" action="{{ url_for('email') }}">
+            <div class="form-group">
+                <label for="otp">Enter your otp</label>
+                <input type="text" id="username" name="otp" required>
+            </div>
+            <button type="submit">Verify</button>
+        </form>
+        {% else %}
+        <form method="POST" action="{{ url_for('email') }}">
+            <div class="form-group">
+                <label for="otp">Enter your otp</label>
+                <input type="text" id="username" name="otp" required>
+            </div>
+            <button type="submit">Verify</button>
+        </form>
+        {% endif %}
+    </div>
+{% endblock %}

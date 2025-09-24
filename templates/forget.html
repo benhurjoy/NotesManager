@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}forget password{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="login-container">
+        <h2>enter registered email</h2>
+        {% if message_type=="error" %}
+            <div class="{{ message_type }}">{{ message }}</div>
+        {% else %}
+        <form method="POST" action="{{ url_for('forgot_password') }}">
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="text" id="username" name="email" required>
+            </div>
+            <!-- <div class="form-group">
+                <label for="">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div> -->
+            <button type="submit">Send otp</button>
+        </form>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}dashboard{% endblock%} 
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="home-container">
+        <h2>Welcome to Notes Manager {{message}}</h2>
+        <p>Organize your notes and files with ease.</p>
+
+    </div>
+{% endblock %}
