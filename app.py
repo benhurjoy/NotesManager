@@ -235,4 +235,4 @@ def PasswordChange():
         update_password(new_password,session["femail"])
         return render_template("changePassword.html",message="Password updated successfully",message_type="success")
     return render_template("changePassword.html")
-app.run(host="0.0.0.0",  debug=True)
+app.run(debug=True)
