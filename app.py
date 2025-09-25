@@ -1,5 +1,5 @@
 from flask import Flask,render_template,redirect,url_for,request,session,send_file,Response
-from config import EMAIL_USER,EMAIL_PASS,SECRET_KEY
+from config import EMAIL_USER,EMAIL_PASS
 from database import find_user,create_table,insert_user,check_password,find_user_email,update_password,create_notes_table,insert_notes,find_notes,deleteNote,find_notes_id,updateNote,create_files_table,insert_files_table,find_file,find_file_id,delete_file_id,db_search
 import re
 import random as r
@@ -7,7 +7,7 @@ import yagmail
 import os 
 import io
 app=Flask(__name__)
-app.secret_key=SECRET_KEY
+app.secret_key = os.environ.get("SECRET_KEY")
 app.config["UPLOAD_FOLDER"]="uploads"
 os.makedirs(app.config["UPLOAD_FOLDER"],exist_ok=True)
 create_table()
