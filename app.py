@@ -1,8 +1,7 @@
 from flask import Flask,render_template,redirect,url_for,request,session,send_file,Response
-from config import EMAIL_USER,EMAIL_PASS,SECRET_KEY,RESEND_API_KEY
+from config import EMAIL_USER,EMAIL_PASS,SECRET_KEY
 from database import find_user,create_table,insert_user,check_password,find_user_email,update_password,create_notes_table,insert_notes,find_notes,deleteNote,find_notes_id,updateNote,create_files_table,insert_files_table,find_file,find_file_id,delete_file_id,db_search
 import re
-import resend
 import random as r
 import yagmail
 import os 
@@ -15,21 +14,11 @@ create_table()
 create_notes_table()
 create_files_table()
 def send_email(to_email,otp):
-    recipient_email = to_email
-    otp_code = otp
-    resend.api_key = RESEND_API_KEY
-    params = {
-        "from": "onboarding@your-verified-domain.com",
-        "to": [recipient_email],
-        "subject": "Your OTP Code",
-        "html": f"<h1>Your OTP is: {otp_code}</h1>"
-    }
-
-    try:
-        email = resend.Emails.send(params)
-        return {"status": "success", "email_id": email['id']}, 200
-    except Exception as e:
-        return {"status": "error", "message": str(e)}, 500
+    yag = yagmail.SMTP(user=EMAIL_USER, password=EMAIL_PASS)
+    yag.send(
+    to=to_email,
+    subject="verification otp for notes manager web application",
+    contents=f"OTP-{otp} ,for the verification of the email")
 @app.route("/")
 def home():
     session.clear()
@@ -246,5 +235,4 @@ def PasswordChange():
         update_password(new_password,session["femail"])
         return render_template("changePassword.html",message="Password updated successfully",message_type="success")
     return render_template("changePassword.html")
-port = int(os.environ.get("PORT", 5030))  # 5030 is fallback for local testing
-app.run(host="0.0.0.0", port=port, debug=True)
+app.run(host="0.0.0.0",  debug=True)
