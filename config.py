@@ -1,11 +1,10 @@
 import os
-from dotenv import load_dotenv
-load_dotenv()
-DB_HOST = os.getenv("DB_HOST")
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_PORT=int(os.getenv("DB_PORT", 3306))
-DB_NAME = os.getenv("DB_NAME")
-SECRET_KEY = os.getenv("SECRET_KEY")
-EMAIL_USER = os.getenv("EMAIL_USER")
-EMAIL_PASS = os.getenv("EMAIL_PASS")
+
+DB_HOST = os.environ["DB_HOST"]
+DB_USER = os.environ["DB_USER"]
+DB_PASSWORD = os.environ["DB_PASSWORD"]
+DB_PORT = int(os.environ.get("DB_PORT", 3306))
+DB_NAME = os.environ["DB_NAME"]
+SECRET_KEY = os.environ["SECRET_KEY"]
+EMAIL_USER = os.environ["EMAIL_USER"]
+EMAIL_PASS = os.environ["EMAIL_PASS"]
