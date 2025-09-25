@@ -235,5 +235,5 @@ def PasswordChange():
         update_password(new_password,session["femail"])
         return render_template("changePassword.html",message="Password updated successfully",message_type="success")
     return render_template("changePassword.html")
-           
-app.run(debug=True,port=5030)
+port = int(os.environ.get("PORT", 5030))  # 5030 is fallback for local testing
+app.run(host="0.0.0.0", port=port, debug=True)
