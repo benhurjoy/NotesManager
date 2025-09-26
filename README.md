@@ -95,7 +95,7 @@ Added email OTP verification using Yagmail for registration & password reset
 
 ☁ Deployment
 
-I made the app deploy-ready on Render.com, using environment variables for secure credentials and connecting to cloud MySQL databases like PlanetScale.
+I made the app deploy-ready on pythonanywhere.com, using environment variables for secure credentials and connecting MySQL databases.
 
 🗂 Project Structure
 .
