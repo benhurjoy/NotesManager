@@ -90,6 +90,7 @@ def login():
         storedPassword=user["PASSWORD"]
         if check_password(storedPassword,password):
             session["username"]=user["USERNAME"]
+            session["id"]=find_user_id(session["username"])
             return redirect(url_for("dashboard"))
         else:
             return render_template("login.html",message="incorrect password",message_type="error")
