@@ -173,7 +173,7 @@ def find_file(username):
     try:
         conn=get_connection()
         with conn.cursor() as cursor:
-            sql="SELECT * FROM files WHERE USERNAME=%s"
+            sql="SELECT * FROM FILES WHERE USERNAME=%s"
             cursor.execute(sql,(username,))
             return cursor.fetchall()
     finally:
@@ -182,7 +182,7 @@ def find_file_id(fid):
     try:
         conn=get_connection()
         with conn.cursor() as cursor:
-            sql="SELECT * FROM files WHERE FILE_ID=%s"
+            sql="SELECT * FROM  FILES WHERE FILE_ID=%s"
             cursor.execute(sql,(fid,))
             return cursor.fetchone()
     finally:
