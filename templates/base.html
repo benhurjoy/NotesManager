@@ -11,7 +11,7 @@
     <nav class="navbar">
         <div class="nav-brand">Notes Manager</div>
         <ul class="nav-links">
-            {% if session.get("username")%}
+            {% if session.get("ID")%}
                 <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ url_for('add_note') }}">Add Note</a></li>
                 <li><a href="{{ url_for('view_notes') }}">View Notes</a></li>

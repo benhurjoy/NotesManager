@@ -25,6 +25,15 @@ def create_table():
         conn.commit()
     finally:
         conn.close()
+def find_user_id(username):
+    try:
+        conn=get_connection()
+        with conn.cursor() as cursor:
+            sql="SELECT ID FROM USERS WHERE USERNAME=%s"
+            cursor.execute(sql,(username,))
+            return cursor.fetchone()
+    finally:
+        conn.close()
 def insert_user(username,password,email):
     conn=get_connection()
     try:

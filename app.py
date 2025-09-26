@@ -1,6 +1,6 @@
 from flask import Flask,render_template,redirect,url_for,request,session,send_file,Response
 from config import EMAIL_USER,EMAIL_PASS,SECRET_KEY
-from database import find_user,create_table,insert_user,check_password,find_user_email,update_password,create_notes_table,insert_notes,find_notes,deleteNote,find_notes_id,updateNote,create_files_table,insert_files_table,find_file,find_file_id,delete_file_id,db_search
+from database import find_user,create_table,insert_user,check_password,find_user_email,update_password,create_notes_table,insert_notes,find_notes,deleteNote,find_notes_id,updateNote,create_files_table,insert_files_table,find_file,find_file_id,delete_file_id,db_search,find_user_id
 import re
 import random as r
 import yagmail
@@ -74,6 +74,7 @@ def email():
          otp=request.form.get("otp")
          if int(otp)==int(session["genotp"]):
              insert_user(session["username"],session["password"],session["email"])
+             session["id"]=find_user_id(session["username"])
              return render_template("email.html",message="email verified successfully and user registered",message_type="success")
          else:
              return render_template("email.html",message="please enter valid otp",message_type="error")
